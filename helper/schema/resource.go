@@ -394,6 +394,9 @@ func (r *Resource) Apply(
 
 	if s != nil && data != nil {
 		data.providerMeta = s.ProviderMeta
+		data.rawConfig = s.RawConfig
+		data.rawState = s.RawState
+		data.rawPlan = s.RawPlan
 	}
 
 	// Instance Diff shoould have the timeout info, need to copy it over to the

@@ -28,6 +28,9 @@ type ResourceData struct {
 	meta         map[string]interface{}
 	timeouts     *ResourceTimeout
 	providerMeta cty.Value
+	rawConfig    cty.Value
+	rawState     cty.Value
+	rawPlan      cty.Value
 
 	// Don't set
 	multiReader *MultiLevelFieldReader
@@ -579,4 +582,16 @@ func (d *ResourceData) GetProviderMeta(dst interface{}) error {
 		return nil
 	}
 	return gocty.FromCtyValue(d.providerMeta, &dst)
+}
+
+func (d *ResourceData) GetRawConfig() cty.Value {
+	return d.rawConfig
+}
+
+func (d *ResourceData) GetRawState() cty.Value {
+	return d.rawState
+}
+
+func (d *ResourceData) GetRawPlan() cty.Value {
+	return d.rawPlan
 }
